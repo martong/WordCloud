@@ -1,0 +1,6 @@
+*.o
+*.po
+.depend
+*.a
+unitTest
+worldCloud

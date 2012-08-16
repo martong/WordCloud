@@ -1,0 +1,18 @@
+#include "wc/Mediator.hpp"
+#include "make_unique.hpp"
+#include "DirectoryRange.hpp"
+#include "simple/FileParser.hpp"
+
+namespace wc {
+
+void Mediator::operator()()
+{
+	using namespace wc;
+	auto range = makeDirectoryRange(options.path);
+	for (auto file : range) {
+		IFileParserPtr fileParser = make_unique<simple::FileParser>();
+		fileParser->parse(file.string(), countMap);
+	}
+}
+
+} // namespace wc
