@@ -22,10 +22,11 @@ struct CountEntry {
 };
 
 inline bool operator<(const CountEntry& l, const CountEntry& r) { return l.count < r.count; }
+inline bool operator>(const CountEntry& l, const CountEntry& r) { return l.count > r.count; }
 
 typedef boost::bimap<
 			boost::bimaps::unordered_set_of<std::string>,
-			boost::bimaps::multiset_of<CountEntry>
+			boost::bimaps::multiset_of<CountEntry, std::greater<CountEntry>>
 		> CountMap;
 
 }
