@@ -1,5 +1,5 @@
-#ifndef MORE_ADAPTORS_FIRST_N_HPP_
-#define MORE_ADAPTORS_FIRST_N_HPP_
+#ifndef MORE_ADAPTORS_PROJECTED_HPP_
+#define MORE_ADAPTORS_PROJECTED_HPP_
 
 #include <boost/iterator/iterator_adaptor.hpp>
 #include <boost/range/iterator_range.hpp>
@@ -172,4 +172,4 @@ project(const InputRange& rng, UnaryFunction fn)
 } // namespace more
 
 
-#endif /* MORE_ADAPTORS_FIRST_N_HPP_ */
+#endif /* MORE_ADAPTORS_PROJECTED_HPP_ */
