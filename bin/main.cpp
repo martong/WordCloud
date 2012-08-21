@@ -17,11 +17,9 @@ int main(int argc, char** argv)
 	options.path = argv[1];
 	Mediator m(options);
 	m();
-	const CountMap& cm = m.getCountMap();
 
 	size_t firstN = boost::lexical_cast<size_t>(argv[2]);
-	const auto range = getFirstN(cm, firstN);
-	print(std::cout, range);
+	std::cout << getFirstN(m.getCountMap(), firstN) << std::flush;
 	//std::cout << m.getCountMap().left << std::endl;
 
 	return 0;
