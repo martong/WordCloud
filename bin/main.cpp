@@ -1,7 +1,8 @@
-#include "wc/Mediator.hpp"
-#include "wc/CountMapIO.hpp"
 #include <iostream>
 #include <boost/lexical_cast.hpp>
+#include "wc/Mediator.hpp"
+#include "wc/CountMapIO.hpp"
+#include "wc/getFirstN.hpp"
 
 int main(int argc, char** argv)
 {
@@ -16,10 +17,12 @@ int main(int argc, char** argv)
 	options.path = argv[1];
 	Mediator m(options);
 	m();
+	const CountMap& cm = m.getCountMap();
 
 	size_t firstN = boost::lexical_cast<size_t>(argv[2]);
-	std::cout << FirstN(m.getCountMap(), firstN) << std::endl;
-	//std::cout << m.getCountMap() << std::endl;
+	const auto range = getFirstN(cm, firstN);
+	print(std::cout, range);
+	//std::cout << m.getCountMap().left << std::endl;
 
 	return 0;
 }
