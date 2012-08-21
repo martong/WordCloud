@@ -57,10 +57,10 @@ first_n(ForwardRange& r, std::size_t n)
 }
 
 template <class ForwardRange>
-inline first_nd_range<ForwardRange>
+inline first_nd_range<const ForwardRange>
 first_n(const ForwardRange& r, std::size_t n)
 {
-	return first_nd_range<ForwardRange>(r,n);
+	return first_nd_range<const ForwardRange>(r,n);
 }
 
 template< class ForwardRange >
