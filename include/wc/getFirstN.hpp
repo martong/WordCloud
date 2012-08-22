@@ -4,6 +4,7 @@
 #include "wc/CountMap.hpp"
 #include <boost/iterator/iterator_adaptor.hpp>
 #include <boost/range/adaptor/transformed.hpp>
+#include <boost/range/adaptor/indirected.hpp>
 #include <more/range/adaptor/projected.hpp>
 #include <more/range/adaptor/first_nd.hpp>
 
@@ -34,11 +35,16 @@ auto getFirstNImpl = [](const CountMap& cm, std::size_t N)
 	using namespace more::adaptors;
 	using namespace boost::adaptors;
 	auto n = cm.size() > N ? N : cm.size();
-	// TODO find out, what is the problem with the reversed order
-	//auto range = cm.right | first_nd(N) | projected(ProjectFunc(cm));
-	//auto range = cm.right | projected(ProjectFunc(cm)) | first_nd(n);
+
+	// Does not compile: first_nd changes the iterator type to first_nd_iterator,
+	// but ProjectFunc requires right_const_iterator
+	//auto range = cm.right | first_nd(n) | projected(ProjectFunc(cm)) | indirected;
+
+	//auto range = cm.right | projected(ProjectFunc(cm)) | indirected | first_nd(n);
+	//auto range = cm.right | projected(ProjectFunc(cm)) | first_nd(n) | indirected;
 	//auto range = cm.right | transformed(TransformFunc(cm)) | first_nd(n);
 	auto range = cm.right | first_nd(n) | transformed(TransformFunc(cm));
+
 	return range;
 };
 
