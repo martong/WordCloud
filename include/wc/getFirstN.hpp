@@ -25,7 +25,8 @@ auto getFirstNImpl = [](const CountMap& cm, std::size_t N)
 	using namespace more::adaptors;
 	// TODO find out, what is the problem with the reversed order
 	//auto range = cm.right | first_nd(N) | projected(ProjectFunc(cm));
-	auto range = cm.right | projected(ProjectFunc(cm)) | first_nd(N);
+	auto n = cm.size() > N ? N : cm.size();
+	auto range = cm.right | projected(ProjectFunc(cm)) | first_nd(n);
 	return range;
 };
 
