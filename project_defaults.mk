@@ -52,8 +52,12 @@ project_incl_statement := -I $(project_incl_dir)
 project_lib_dir := $(PROJECT_ROOT)/lib
 project_lib_statement := -L $(project_lib_dir) 
 
+more_dir := /home/egbomrt/workspaces/cpp11/More.Adaptors
+more_incl_dir := $(more_dir)/include
+more_incl_statement := -I $(more_incl_dir)
+
 DEFS =
-INCL_DIRS = $(project_incl_statement) $(boost_incl_statement) 
+INCL_DIRS = $(project_incl_statement) $(boost_incl_statement) $(more_incl_statement) 
 LIB_DIRS = $(project_lib_statement) $(boost_lib_statement) $(gcc_lib_statement)
 
 CPPFLAGS = -std=c++11 -Wall -Wextra -O0 -g $(DEFS) $(INCL_DIRS)
