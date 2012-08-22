@@ -1,5 +1,5 @@
-#ifndef WORLDCLOUD_WC_COUNTMAP_HPP_
-#define WORLDCLOUD_WC_COUNTMAP_HPP_
+#ifndef WORDCLOUD_WC_COUNTMAP_HPP_
+#define WORDCLOUD_WC_COUNTMAP_HPP_
 
 #include <string>
 #include <boost/bimap.hpp>
@@ -31,4 +31,4 @@ typedef boost::bimap<
 
 }
 
-#endif /* WORLDCLOUD_WC_COUNTMAP_HPP_ */
+#endif /* WORDCLOUD_WC_COUNTMAP_HPP_ */

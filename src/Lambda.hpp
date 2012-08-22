@@ -1,6 +1,6 @@
 //TODO rename include guard!!!
-#ifndef WorldCloud__LAMBDA_HPP_
-#define WorldCloud__LAMBDA_HPP_
+#ifndef WordCloud__LAMBDA_HPP_
+#define WordCloud__LAMBDA_HPP_
 
 #include <functional>
 #include <type_traits>
@@ -43,4 +43,4 @@ static_assert(std::is_same<
 //		int>::value, "oops3");
 
 
-#endif /* WorldCloud__LAMBDA_HPP_ */
+#endif /* WordCloud__LAMBDA_HPP_ */

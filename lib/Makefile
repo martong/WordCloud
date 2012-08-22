@@ -12,7 +12,7 @@ export SOURCES_DIR := $(call get_dir,$(get_src_pattern),$(CURDIR)/,$(get_src_err
 endif
 
 get_prj_errmsg := Could not determine the project root directory
-get_prj_pattern := /WorldCloud/
+get_prj_pattern := /WordCloud/
 export PROJECT_ROOT := $(call get_dir,$(get_prj_pattern),$(CURDIR)/,$(get_prj_errmsg))
 
 #########################################
@@ -41,7 +41,7 @@ SRCS := $(wildcard ../src/*.cpp) $(wildcard ../src/simple/*.cpp)
 HEADERS := 
 OBJS := $(SRCS:%.cpp=%.o)
 PIC_OBJS := $(SRCS:%.cpp=%.po)
-LIBS := libWorldCloud.a
+LIBS := libWordCloud.a
 BINS :=
 TARGET := $(LIBS)
 DEPFILE :=
@@ -81,7 +81,7 @@ local-real-clean: real-clean
 #	$(MAKE) -C src pus_client
 #	cp $(PROJECT_ROOT)/src/pus_client $(DESTDIR)/$(PREFIX)/bin/
 
-.PHONY: libWorldCloud.a
-libWorldCloud.a: $(OBJS)
+.PHONY: libWordCloud.a
+libWordCloud.a: $(OBJS)
 	$(MAKE) -C ../src
 	ar crs $@ $(OBJS)

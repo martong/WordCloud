@@ -1,5 +1,5 @@
-#ifndef WORLDCLOUD_WC_IFILEPARSER_HPP_
-#define WORLDCLOUD_WC_IFILEPARSER_HPP_
+#ifndef WORDCLOUD_WC_IFILEPARSER_HPP_
+#define WORDCLOUD_WC_IFILEPARSER_HPP_
 
 #include "wc/CountMap.hpp"
 #include <string>
@@ -17,4 +17,4 @@ typedef std::unique_ptr<IFileParser> IFileParserPtr;
 
 } // namespace wc
 
-#endif /* WORLDCLOUD_WC_IFILEPARSER_HPP_ */
+#endif /* WORDCLOUD_WC_IFILEPARSER_HPP_ */

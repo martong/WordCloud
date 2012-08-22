@@ -1,6 +1,6 @@
 //TODO rename include guard!!!
-#ifndef WORLDCLOUD_WC_SIMPLE_FILEPARSER_HPP_
-#define WORLDCLOUD_WC_SIMPLE_FILEPARSER_HPP_
+#ifndef WORDCLOUD_WC_SIMPLE_FILEPARSER_HPP_
+#define WORDCLOUD_WC_SIMPLE_FILEPARSER_HPP_
 
 #include "../src/IFileParser.hpp"
 
@@ -16,4 +16,4 @@ public:
 } // namespace simple
 } // namespace wc
 
-#endif /* WORLDCLOUD_WC_SIMPLE_FILEPARSER_HPP_ */
+#endif /* WORDCLOUD_WC_SIMPLE_FILEPARSER_HPP_ */

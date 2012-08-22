@@ -1,5 +1,5 @@
-#ifndef WORLDCLOUD__MAKE_UNIQUE_HPP_
-#define WORLDCLOUD__MAKE_UNIQUE_HPP_
+#ifndef WORDCLOUD__MAKE_UNIQUE_HPP_
+#define WORDCLOUD__MAKE_UNIQUE_HPP_
 
 #include <memory>
 #include <utility>
@@ -10,4 +10,4 @@ std::unique_ptr<T> make_unique( Args&& ...args )
     return std::unique_ptr<T>( new T( std::forward<Args>(args)... ) );
 }
 
-#endif /* WORLDCLOUD__MAKE_UNIQUE_HPP_ */
+#endif /* WORDCLOUD__MAKE_UNIQUE_HPP_ */

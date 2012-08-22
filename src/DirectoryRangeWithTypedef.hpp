@@ -1,5 +1,5 @@
-#ifndef WORLDCLOUD_WC_DIRECTORYRANGE_HPP_
-#define WORLDCLOUD_WC_DIRECTORYRANGE_HPP_
+#ifndef WORDCLOUD_WC_DIRECTORYRANGE_HPP_
+#define WORDCLOUD_WC_DIRECTORYRANGE_HPP_
 
 #include <boost/filesystem.hpp>
 #include <boost/range/iterator_range.hpp>
@@ -57,4 +57,4 @@ makeDirectoryRange(const boost::filesystem::path& directoryPath)
 
 } // namespace wc
 
-#endif /* WORLDCLOUD_WC_DIRECTORYRANGE_HPP_ */
+#endif /* WORDCLOUD_WC_DIRECTORYRANGE_HPP_ */

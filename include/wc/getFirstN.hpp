@@ -1,5 +1,5 @@
-#ifndef WORLDCLOUD_WC_GETFIRSTN_HPP_
-#define WORLDCLOUD_WC_GETFIRSTN_HPP_
+#ifndef WORDCLOUD_WC_GETFIRSTN_HPP_
+#define WORDCLOUD_WC_GETFIRSTN_HPP_
 
 #include "wc/CountMap.hpp"
 #include <boost/iterator/iterator_adaptor.hpp>
@@ -39,4 +39,4 @@ auto getFirstN(const CountMap& cm, std::size_t N) -> decltype(detail::getFirstNI
 
 } // namespace wc
 
-#endif /* WORLDCLOUD_WC_GETFIRSTN_HPP_ */
+#endif /* WORDCLOUD_WC_GETFIRSTN_HPP_ */

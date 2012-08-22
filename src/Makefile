@@ -12,7 +12,7 @@ export SOURCES_DIR := $(call get_dir,$(get_src_pattern),$(CURDIR)/,$(get_src_err
 endif
 
 get_prj_errmsg := Could not determine the project root directory
-get_prj_pattern := /WorldCloud/
+get_prj_pattern := /WordCloud/
 export PROJECT_ROOT := $(call get_dir,$(get_prj_pattern),$(CURDIR)/,$(get_prj_errmsg))
 
 #########################################

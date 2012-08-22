@@ -27,7 +27,7 @@
 									<listOptionValue builtIn="false" value="/home/egbomrt/BOOST/inst_1_50_0/include"/>
 									<listOptionValue builtIn="false" value="/home/egbomrt/gcc/4.7.1/include/c++/4.7.1"/>
 								</option>
-								<option id="gnu.cpp.compiler.option.preprocessor.def.315711686" superClass="gnu.cpp.compiler.option.preprocessor.def" valueType="definedSymbols">
+								<option id="gnu.cpp.compiler.option.preprocessor.def.315711686" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="__GXX_EXPERIMENTAL_CXX0X__=1"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.110762441" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
@@ -59,11 +59,11 @@
 		</cconfiguration>
 	</storageModule>
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-		<project id="WorldCloud.null.953596258" name="WorldCloud"/>
+		<project id="WordCloud.null.953596258" name="WordCloud"/>
 	</storageModule>
 	<storageModule moduleId="refreshScope" versionNumber="2">
 		<configuration configurationName="Default">
-			<resource resourceType="PROJECT" workspacePath="/WorldCloud"/>
+			<resource resourceType="PROJECT" workspacePath="/WordCloud"/>
 		</configuration>
 	</storageModule>
 	<storageModule moduleId="scannerConfiguration">

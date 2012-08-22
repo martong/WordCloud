@@ -3,6 +3,6 @@
 .depend
 *.a
 unitTest
-worldCloud
+wordCloud
 .settings
 .nfs*

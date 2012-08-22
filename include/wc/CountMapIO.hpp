@@ -1,5 +1,5 @@
-#ifndef WORLDCLOUD_WC_COUNTMAPIO_HPP_
-#define WORLDCLOUD_WC_COUNTMAPIO_HPP_
+#ifndef WORDCLOUD_WC_COUNTMAPIO_HPP_
+#define WORDCLOUD_WC_COUNTMAPIO_HPP_
 
 #include "wc/CountMap.hpp"
 #include "wc/getFirstN.hpp"
@@ -46,4 +46,4 @@ std::ostream& operator<<(std::ostream& os, const CountMap::left_map& obj)
 
 } // namespace wc
 
-#endif /* WORLDCLOUD_WC_COUNTMAPIO_HPP_ */
+#endif /* WORDCLOUD_WC_COUNTMAPIO_HPP_ */

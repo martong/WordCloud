@@ -12,7 +12,7 @@ export SOURCES_DIR := $(call get_dir,$(get_src_pattern),$(CURDIR)/,$(get_src_err
 endif
 
 get_prj_errmsg := Could not determine the project root directory
-get_prj_pattern := /WorldCloud/
+get_prj_pattern := /WordCloud/
 export PROJECT_ROOT := $(call get_dir,$(get_prj_pattern),$(CURDIR)/,$(get_prj_errmsg))
 
 #########################################
@@ -41,7 +41,7 @@ SRCS := $(wildcard *.cpp)
 HEADERS := $(wildcard *.hpp)
 OBJS := $(SRCS:%.cpp=%.o)
 LIBS :=
-BINS := worldCloud
+BINS := wordCloud
 TARGET := dependency $(LIBS) $(BINS)
 DEPFILE := .depend
 INCL_DIRS := $(INCL_DIRS) -I $(PROJECT_ROOT)/src 
@@ -88,10 +88,10 @@ BOOST_LIBS = $(boost_lib_dir)/libboost_thread.a \
 #	$(boost_lib_dir)/libboost_program_options.a \
 #	$(boost_lib_dir)/libboost_serialization.a \
 
-worldCloud: $(OBJS) 
+wordCloud: $(OBJS) 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) \
 	-o $@ $^ \
-	$(PROJECT_ROOT)/lib/libWorldCloud.a \
+	$(PROJECT_ROOT)/lib/libWordCloud.a \
 	$(BOOST_LIBS) \
 	-lpthread
 	

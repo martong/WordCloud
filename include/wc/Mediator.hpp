@@ -1,5 +1,5 @@
-#ifndef WORLDCLOUD_WC_MEDIATOR_HPP_
-#define WORLDCLOUD_WC_MEDIATOR_HPP_
+#ifndef WORDCLOUD_WC_MEDIATOR_HPP_
+#define WORDCLOUD_WC_MEDIATOR_HPP_
 
 #include "wc/Options.hpp"
 #include "wc/CountMap.hpp"
@@ -25,4 +25,4 @@ public:
 
 } // namespace wc
 
-#endif /* WORLDCLOUD_WC_MEDIATOR_HPP_ */
+#endif /* WORDCLOUD_WC_MEDIATOR_HPP_ */

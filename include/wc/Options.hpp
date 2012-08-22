@@ -1,5 +1,5 @@
-#ifndef WORLDCLOUD_WC_OPTIONS_HPP_
-#define WORLDCLOUD_WC_OPTIONS_HPP_
+#ifndef WORDCLOUD_WC_OPTIONS_HPP_
+#define WORDCLOUD_WC_OPTIONS_HPP_
 
 #include <string>
 
@@ -12,4 +12,4 @@ struct Options {
 
 } // namespace wc
 
-#endif /* WORLDCLOUD_WC_OPTIONS_HPP_ */
+#endif /* WORDCLOUD_WC_OPTIONS_HPP_ */
