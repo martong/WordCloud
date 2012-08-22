@@ -52,7 +52,7 @@ project_incl_statement := -I $(project_incl_dir)
 project_lib_dir := $(PROJECT_ROOT)/lib
 project_lib_statement := -L $(project_lib_dir) 
 
-more_dir := /home/egbomrt/workspaces/cpp11/More.Adaptors
+more_dir := /home/egbomrt/workspaces/cpp11/More.Range.Adaptors
 more_incl_dir := $(more_dir)/include
 more_incl_statement := -I $(more_incl_dir)
 

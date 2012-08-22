@@ -4,8 +4,8 @@
 #include "wc/CountMap.hpp"
 #include <boost/iterator/iterator_adaptor.hpp>
 #include <boost/range/adaptor/transformed.hpp>
-#include <more/adaptors/projected.hpp>
-#include <more/adaptors/first_nd.hpp>
+#include <more/range/adaptor/projected.hpp>
+#include <more/range/adaptor/first_nd.hpp>
 
 namespace wc {
 
