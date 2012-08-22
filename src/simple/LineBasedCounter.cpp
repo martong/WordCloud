@@ -22,11 +22,6 @@ void LineBasedCounter::operator()(const std::string& line, CountMap& countMap)
 		} else {
 			countMap.insert(CountMap::value_type(*i, 1));
 		}
-
-//		// default initialized to zero
-//		typedef CountMap::value_type Value;
-//
-//		++(countMap[*i].count);
 		++i;
 	}
 }
