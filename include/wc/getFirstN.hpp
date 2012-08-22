@@ -22,11 +22,23 @@ auto getFirstNImpl = [](const CountMap& cm, std::size_t N)
 		const CountMap& cm;
 	};
 
+	struct TransformFunc {
+		typedef CountMap::left_value_type result_type;
+		TransformFunc(const CountMap& cm) : cm(cm) {}
+		result_type operator()(const CountMap::right_value_type& val) const{
+			return result_type(val.second, val.first);
+		}
+		const CountMap& cm;
+	};
+
 	using namespace more::adaptors;
+	using namespace boost::adaptors;
+	auto n = cm.size() > N ? N : cm.size();
 	// TODO find out, what is the problem with the reversed order
 	//auto range = cm.right | first_nd(N) | projected(ProjectFunc(cm));
-	auto n = cm.size() > N ? N : cm.size();
-	auto range = cm.right | projected(ProjectFunc(cm)) | first_nd(n);
+	//auto range = cm.right | projected(ProjectFunc(cm)) | first_nd(n);
+	//auto range = cm.right | transformed(TransformFunc(cm)) | first_nd(n);
+	auto range = cm.right | first_nd(n) | transformed(TransformFunc(cm));
 	return range;
 };
 
