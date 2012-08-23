@@ -15,11 +15,12 @@ int main(int argc, char** argv)
 
 	Options options;
 	options.path = argv[1];
+	options.firstN = boost::lexical_cast<size_t>(argv[2]);
+
 	Mediator m(options);
 	m();
 
-	size_t firstN = boost::lexical_cast<size_t>(argv[2]);
-	std::cout << getFirstN(m.getCountMap(), firstN) << std::flush;
+	std::cout << getFirstN(m.getCountMap(), options.firstN) << std::flush;
 	//std::cout << m.getCountMap().left << std::endl;
 
 	return 0;
