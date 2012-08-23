@@ -9,7 +9,7 @@ namespace simple {
 
 class FileParser : public IFileParser {
 public:
-	virtual void parse(const std::string& fileName, CountMap& count);
+	virtual void parse(const std::string& fileName, detail::CountMap& count);
 	virtual ~FileParser() {};
 };
 

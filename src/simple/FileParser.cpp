@@ -6,7 +6,7 @@
 namespace wc {
 namespace simple {
 
-void FileParser::parse(const std::string& fileName, CountMap& count)
+void FileParser::parse(const std::string& fileName, detail::CountMap& count)
 {
 	using std::ifstream;
 	ifstream stream(fileName);

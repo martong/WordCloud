@@ -2,7 +2,7 @@
 #define WORDCLOUD_WC_MEDIATOR_HPP_
 
 #include "wc/Options.hpp"
-#include "wc/CountMap.hpp"
+#include "wc/detail/CountMap.hpp"
 #include "wc/WordCount.hpp"
 
 namespace wc {
@@ -10,13 +10,13 @@ namespace wc {
 class Mediator {
 
 	const Options& options;
-	CountMap countMap;
+	detail::CountMap countMap;
 
 public:
 
 	Mediator(const Options& options) : options(options) {}
 	void operator()();
-	WordCount getWordCount() const { return getFirstN(countMap, options.firstN); }
+	WordCount getWordCount() const { return detail::getFirstN(countMap, options.firstN); }
 
 	~Mediator() = default;
 	Mediator(const Mediator&) = delete;

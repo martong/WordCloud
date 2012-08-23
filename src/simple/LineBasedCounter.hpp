@@ -1,7 +1,7 @@
 #ifndef WORDCLOUD_WC_SIMPLE_LINE_BASED_COUNTER_HPP_
 #define WORDCLOUD_WC_SIMPLE_LINE_BASED_COUNTER_HPP_
 
-#include "wc/CountMap.hpp"
+#include "wc/detail/CountMap.hpp"
 
 namespace wc {
 namespace simple {
@@ -15,7 +15,7 @@ public:
 	LineBasedCounter& operator=(const LineBasedCounter& other) = delete;
 	~LineBasedCounter() = default;
 
-	void operator()(const std::string& line, CountMap& countMap);
+	void operator()(const std::string& line, detail::CountMap& countMap);
 };
 
 }  // namespace simple

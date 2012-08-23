@@ -1,10 +1,5 @@
-#ifndef WORDCLOUD_WC_COUNTMAP_HPP_
-#define WORDCLOUD_WC_COUNTMAP_HPP_
-
-#include <string>
-#include <boost/bimap.hpp>
-#include <boost/bimap/unordered_set_of.hpp>
-#include <boost/bimap/multiset_of.hpp>
+#ifndef WORDCLOUD_WC_COUNTENTRY_HPP_
+#define WORDCLOUD_WC_COUNTENTRY_HPP_
 
 namespace wc {
 
@@ -24,11 +19,7 @@ struct CountEntry {
 inline bool operator<(const CountEntry& l, const CountEntry& r) { return l.count < r.count; }
 inline bool operator>(const CountEntry& l, const CountEntry& r) { return l.count > r.count; }
 
-typedef boost::bimap<
-			boost::bimaps::unordered_set_of<std::string>,
-			boost::bimaps::multiset_of<CountEntry, std::greater<CountEntry>>
-		> CountMap;
+} // namespace wc
 
-}
 
-#endif /* WORDCLOUD_WC_COUNTMAP_HPP_ */
+#endif /* WORDCLOUD_WC_COUNTENTRY_HPP_ */

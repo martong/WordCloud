@@ -1,7 +1,7 @@
 #ifndef WORDCLOUD_WC_GETFIRSTN_HPP_
 #define WORDCLOUD_WC_GETFIRSTN_HPP_
 
-#include "wc/CountMap.hpp"
+#include "wc/detail/CountMap.hpp"
 #include <boost/iterator/iterator_adaptor.hpp>
 #include <boost/range/adaptor/transformed.hpp>
 #include <boost/range/adaptor/indirected.hpp>
@@ -9,8 +9,10 @@
 #include <more/range/adaptor/first_nd.hpp>
 
 namespace wc {
-
 namespace detail {
+
+
+namespace firstn_detail {
 
 auto getFirstNImpl = [](const CountMap& cm, std::size_t N)
 {
@@ -48,14 +50,16 @@ auto getFirstNImpl = [](const CountMap& cm, std::size_t N)
 	return range;
 };
 
-} // namespace detail
+}  // namespace firstn_detail
 
 inline
-auto getFirstN(const CountMap& cm, std::size_t N) -> decltype(detail::getFirstNImpl(cm, N))
+auto getFirstN(const CountMap& cm, std::size_t N)
+	-> decltype(firstn_detail::getFirstNImpl(cm, N))
 {
-	return detail::getFirstNImpl(cm, N);
+	return firstn_detail::getFirstNImpl(cm, N);
 }
 
+} // namespace detail
 } // namespace wc
 
 #endif /* WORDCLOUD_WC_GETFIRSTN_HPP_ */

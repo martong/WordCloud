@@ -5,7 +5,7 @@
 namespace wc {
 namespace simple {
 
-void LineBasedCounter::operator()(const std::string& line, CountMap& countMap)
+void LineBasedCounter::operator()(const std::string& line, detail::CountMap& countMap)
 {
 	using namespace boost;
 	regex regex("(\\w+)");
@@ -20,7 +20,7 @@ void LineBasedCounter::operator()(const std::string& line, CountMap& countMap)
 			++e.count;
 			left.replace_data(it, e);
 		} else {
-			countMap.insert(CountMap::value_type(*i, 1));
+			countMap.insert(detail::CountMap::value_type(*i, 1));
 		}
 		++i;
 	}

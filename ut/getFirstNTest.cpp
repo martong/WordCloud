@@ -8,6 +8,7 @@ BOOST_AUTO_TEST_CASE( Basic )
 {
 	using namespace wc;
 	using namespace wc::simple;
+	using namespace wc::detail;
 	CountMap cm;
 	FileParser parser;
 	BOOST_CHECK_NO_THROW( parser.parse("./getFirstNTest.input", cm) );
