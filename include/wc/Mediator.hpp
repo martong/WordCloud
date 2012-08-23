@@ -3,6 +3,7 @@
 
 #include "wc/Options.hpp"
 #include "wc/CountMap.hpp"
+#include "wc/WordCount.hpp"
 
 namespace wc {
 
@@ -15,7 +16,7 @@ public:
 
 	Mediator(const Options& options) : options(options) {}
 	void operator()();
-	const CountMap& getCountMap() const { return countMap; }
+	WordCount getWordCount() const { return getFirstN(countMap, options.firstN); }
 
 	~Mediator() = default;
 	Mediator(const Mediator&) = delete;

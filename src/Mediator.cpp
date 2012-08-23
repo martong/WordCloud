@@ -15,4 +15,9 @@ void Mediator::operator()()
 	}
 }
 
+//WordCount Mediator::getWordCount() const
+//{
+//
+//}
+
 } // namespace wc

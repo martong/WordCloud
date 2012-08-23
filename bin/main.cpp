@@ -19,8 +19,7 @@ int main(int argc, char** argv)
 
 	Mediator m(options); m();
 
-	std::cout << getFirstN(m.getCountMap(), options.firstN) << std::flush;
-	//std::cout << m.getCountMap().left << std::endl;
+	std::cout << m.getWordCount() << std::flush;
 
 	return 0;
 }
