@@ -27,23 +27,12 @@ inline std::ostream& print(std::ostream& os, const Range& obj)
 	return os;
 }
 
-typedef decltype(getFirstN(CountMap(),0)) FirstNRange;
-
-} // namespace detail
-
-
-std::ostream& operator<<(std::ostream& os, const detail::FirstNRange& obj)
-{
-	return detail::print(os, obj);
-}
-
 std::ostream& operator<<(std::ostream& os, const CountMap::left_map& obj)
 {
 	return detail::print(os, obj);
 }
 
-
-
+} // namespace detail
 } // namespace wc
 
 #endif /* WORDCLOUD_WC_COUNTMAPIO_HPP_ */

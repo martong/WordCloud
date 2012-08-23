@@ -1,7 +1,7 @@
 #include <iostream>
 #include <boost/lexical_cast.hpp>
 #include "wc/Mediator.hpp"
-#include "wc/CountMapIO.hpp"
+#include "wc/WordCountIO.hpp"
 #include "wc/getFirstN.hpp"
 
 int main(int argc, char** argv)
@@ -15,10 +15,9 @@ int main(int argc, char** argv)
 
 	Options options;
 	options.path = argv[1];
-	options.firstN = boost::lexical_cast<size_t>(argv[2]);
+	options.firstN = boost::lexical_cast<std::size_t>(argv[2]);
 
-	Mediator m(options);
-	m();
+	Mediator m(options); m();
 
 	std::cout << getFirstN(m.getCountMap(), options.firstN) << std::flush;
 	//std::cout << m.getCountMap().left << std::endl;
