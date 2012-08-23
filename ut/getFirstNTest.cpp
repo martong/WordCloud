@@ -1,5 +1,5 @@
 #include <boost/test/unit_test.hpp>
-#include "wc/getFirstN.hpp"
+#include "wc/detail/getFirstN.hpp"
 #include "../src/simple/FileParser.hpp"
 
 BOOST_AUTO_TEST_SUITE( getFirstNTest )

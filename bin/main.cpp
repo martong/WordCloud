@@ -2,7 +2,7 @@
 #include <boost/lexical_cast.hpp>
 #include "wc/Mediator.hpp"
 #include "wc/WordCountIO.hpp"
-#include "wc/getFirstN.hpp"
+#include "wc/detail/getFirstN.hpp"
 
 int main(int argc, char** argv)
 {

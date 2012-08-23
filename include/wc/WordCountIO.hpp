@@ -2,7 +2,7 @@
 #define WORDCLOUD_WC_WORDCOUNTIO_HPP_
 
 #include "wc/WordCount.hpp"
-#include "wc/CountMapIO.hpp"
+#include "wc/detail/CountMapIO.hpp"
 
 namespace wc {
 
