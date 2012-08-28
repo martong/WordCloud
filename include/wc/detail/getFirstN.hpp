@@ -38,15 +38,8 @@ auto getFirstNImpl = [](const CountMap& cm, std::size_t N)
 	using namespace boost::adaptors;
 	auto n = cm.size() > N ? N : cm.size();
 
-	// Does not compile: first_nd changes the iterator type to first_nd_iterator,
-	// but ProjectFunc requires right_const_iterator
-	//auto range = cm.right | first_nd(n) | projected(ProjectFunc(cm)) | indirected;
-
-	//auto range = cm.right | projected(ProjectFunc(cm)) | indirected | first_nd(n);
-	//auto range = cm.right | projected(ProjectFunc(cm)) | first_nd(n) | indirected;
-	//auto range = cm.right | transformed(TransformFunc(cm)) | first_nd(n);
+	// TODO When OvenToBoost accepted by boost, then replace first_nd to boost::taken(n)
 	auto range = cm.right | first_nd(n) | transformed(TransformFunc(cm));
-
 	return range;
 };
 
