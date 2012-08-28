@@ -16,15 +16,6 @@ namespace firstn_detail {
 
 auto getFirstNImpl = [](const CountMap& cm, std::size_t N)
 {
-	struct ProjectFunc {
-		typedef CountMap::left_const_iterator result_type;
-		ProjectFunc(const CountMap& cm) : cm(cm) {}
-		result_type operator()(const CountMap::right_const_iterator& it) const{
-			return cm.project_left(it);
-		}
-		const CountMap& cm;
-	};
-
 	struct TransformFunc {
 		typedef CountMap::left_value_type result_type;
 		TransformFunc(const CountMap& cm) : cm(cm) {}
