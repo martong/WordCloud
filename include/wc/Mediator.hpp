@@ -3,9 +3,11 @@
 
 #include "wc/Options.hpp"
 #include "wc/detail/CountMap.hpp"
-#include "wc/detail/getFirstN.hpp"
-#include "wc/detail/filterRegex.hpp"
+#include "wc/detail/TransformR2L.hpp"
+#include "wc/detail/FilterRegex.hpp"
+#include <more/range/adaptor/first_nd.hpp>
 #include <boost/range/adaptor/filtered.hpp>
+#include <boost/range/adaptor/transformed.hpp>
 
 namespace wc {
 
@@ -14,8 +16,13 @@ namespace detail {
 auto getWordCountImpl = [](const CountMap& cm, const Options& options)
 {
 	using namespace boost::adaptors;
-	using namespace wc::detail;
-	return getFirstN(cm, options.firstN) | filtered(RegexFilter(options));
+	using namespace more::adaptors;
+
+	auto n = cm.size() > options.firstN ? options.firstN : cm.size();
+
+	// TODO When OvenToBoost accepted by boost, then replace first_nd to boost::taken(n)
+	return cm.right | first_nd(n) |
+			transformed(TransformR2L<CountMap>(cm)) | filtered(RegexFilter(options));
 };
 
 } // namespace detail

@@ -26,7 +26,35 @@ protected:
 	Mediator m;
 };
 
-BOOST_FIXTURE_TEST_CASE( Basic, Fixture )
+BOOST_FIXTURE_TEST_CASE( GetFirstN, Fixture )
+{
+	op.firstN = 3;
+	auto range = m.getWordCount();
+
+	for (const auto& e : range) {
+		BOOST_MESSAGE(e.first << ' ' << e.second.count);
+	}
+
+	std::size_t rangeSize = std::distance(range.begin(), range.end());
+	BOOST_CHECK_EQUAL(rangeSize, 3);
+
+	int i = 1;
+	for (const auto& e : range) {
+		if (i==1) {
+			BOOST_CHECK_EQUAL(e.first, "asdf");
+			BOOST_CHECK_EQUAL(e.second.count, 6);
+		} else if (i==2) {
+			BOOST_CHECK_EQUAL(e.first, "ff");
+			BOOST_CHECK_EQUAL(e.second.count, 5);
+		} else if (i==3) {
+			BOOST_CHECK_EQUAL(e.first, "f");
+			BOOST_CHECK_EQUAL(e.second.count, 4);
+		}
+	++i;
+	}
+}
+
+BOOST_FIXTURE_TEST_CASE( DefaultRegex, Fixture )
 {
 	auto range = m.getWordCount();
 	auto it =

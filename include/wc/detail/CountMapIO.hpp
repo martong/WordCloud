@@ -2,7 +2,6 @@
 #define WORDCLOUD_WC_COUNTMAPIO_HPP_
 
 #include "wc/detail/CountMap.hpp"
-#include "wc/detail/getFirstN.hpp"
 #include <iostream>
 #include <type_traits>
 #include <boost/utility/enable_if.hpp>
