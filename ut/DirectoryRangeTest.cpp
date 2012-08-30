@@ -9,18 +9,18 @@ BOOST_AUTO_TEST_SUITE( DirectoryRangeTest )
 BOOST_AUTO_TEST_CASE( Basic )
 {
 	using namespace wc;
-	auto range = makeDirectoryRange("./DirectoryRangeTest");
+	auto range = makeDirectoryRange("./testDirs/DirectoryRangeTest");
 
 	std::vector<std::string> expectedResult {
-			"./DirectoryRangeTest/3.h",
-			"./DirectoryRangeTest/3.h",
-			"./DirectoryRangeTest/4.c",
-			"./DirectoryRangeTest/5.hpp",
-			"./DirectoryRangeTest/6.cpp",
-			"./DirectoryRangeTest/7.hh",
-			"./DirectoryRangeTest/8.cc",
-			"./DirectoryRangeTest/dir1/6.cpp",
-			"./DirectoryRangeTest/dir1/5.hpp"
+			"./testDirs/DirectoryRangeTest/3.h",
+			"./testDirs/DirectoryRangeTest/3.h",
+			"./testDirs/DirectoryRangeTest/4.c",
+			"./testDirs/DirectoryRangeTest/5.hpp",
+			"./testDirs/DirectoryRangeTest/6.cpp",
+			"./testDirs/DirectoryRangeTest/7.hh",
+			"./testDirs/DirectoryRangeTest/8.cc",
+			"./testDirs/DirectoryRangeTest/dir1/6.cpp",
+			"./testDirs/DirectoryRangeTest/dir1/5.hpp"
 	};
 
 	for (auto p : range) {

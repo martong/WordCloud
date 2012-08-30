@@ -9,7 +9,7 @@ using namespace wc;
 namespace tc_detail {
 struct OptionsInit {
 	OptionsInit(Options& op) {
-		op.path = "./MediatorTest";
+		op.path = "./testDirs/MediatorTest";
 	}
 };
 Options op;
