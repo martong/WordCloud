@@ -78,7 +78,7 @@ local-real-clean: real-clean
 
 .PHONY: $(BINS)
 dependency:
-	$(MAKE) -C $(PROJECT_ROOT)/lib
+	$(MAKE) -C $(PROJECT_ROOT)/lib $(MAKECMDGOALS)
 
 BOOST_LIBS = $(boost_lib_dir)/libboost_thread.a \
 	$(boost_lib_dir)/libboost_system.a \

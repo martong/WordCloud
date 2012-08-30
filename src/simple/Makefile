@@ -32,25 +32,24 @@ include $(PROJECT_ROOT)/project_defaults.mk
 # Settings for recursion down from this level.
 #
 DEFAULT_GOAL := all
-SUBDIRS := simple
+SUBDIRS := 
 COMMON_GOALS := all clean real-clean depend nodep
 
 # Settings for the source code on this level.
 #
 SRCS := $(wildcard *.cpp)
-SIMPLE_SRCS := $(wildcard simple/*.cpp)
 HEADERS := $(wildcard *.hpp)
 OBJS := $(SRCS:%.cpp=%.o)
-SIMPLE_OBJS := $(SIMPLE_SRCS:%.cpp=%.o)
 LIBS :=
-BINS := unitTest
-TARGET := dependency $(LIBS) $(BINS)
+BINS :=
+TARGET := $(OBJS)
 DEPFILE := .depend
-INCL_DIRS := $(INCL_DIRS) -I $(PROJECT_ROOT)/src 
 
 ########################
 # Default common rules #
 ########################
+
+
 
 # Please do not edit this section unless you know what you are doing!
 
@@ -65,6 +64,11 @@ include $(PROJECT_ROOT)/project_rules.mk
 .PHONY: all
 all: $(TARGET)
 
+.PHONY: dependencies
+dependencies:
+	$(MAKE) -C $(LOGGER_DIR)
+	$(MAKE) -C $(IMMCC_DIR)
+
 .PHONY: local-clean
 local-clean: clean
 
@@ -78,23 +82,8 @@ local-real-clean: real-clean
 # You can change this section. Your local rules go here (e.g. rules for
 # libraries, executables).
 
-.PHONY: $(BINS)
-dependency:
-	$(MAKE) -C $(PROJECT_ROOT)/lib $(MAKECMDGOALS)
+#.PHONY: install-client
+#install-client:
+#	$(MAKE) -C src pus_client
+#	cp $(PROJECT_ROOT)/src/pus_client $(DESTDIR)/$(PREFIX)/bin/
 
-BOOST_LIBS = $(boost_lib_dir)/libboost_thread.a \
-	$(boost_lib_dir)/libboost_system.a \
-	$(boost_lib_dir)/libboost_filesystem.a \
-	$(boost_lib_dir)/libboost_regex.a
-#	$(gcc_lib_dir)/libstdc++.a
-#	$(boost_lib_dir)/libboost_program_options.a \
-#	$(boost_lib_dir)/libboost_serialization.a \
-
-unitTest: $(OBJS)
-	$(MAKE) -C simple $(MAKECMDGOALS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) \
-	-o $@ $^ $(SIMPLE_OBJS) \
-	$(PROJECT_ROOT)/lib/libWordCloud.a \
-	$(BOOST_LIBS) \
-	-lpthread
-	

@@ -76,12 +76,7 @@ local-real-clean: real-clean
 # You can change this section. Your local rules go here (e.g. rules for
 # libraries, executables).
 
-#.PHONY: install-client
-#install-client:
-#	$(MAKE) -C src pus_client
-#	cp $(PROJECT_ROOT)/src/pus_client $(DESTDIR)/$(PREFIX)/bin/
-
 .PHONY: libWordCloud.a
 libWordCloud.a: $(OBJS)
-	$(MAKE) -C ../src
+	$(MAKE) -C ../src $(MAKECMDGOALS)
 	ar crs $@ $(OBJS)

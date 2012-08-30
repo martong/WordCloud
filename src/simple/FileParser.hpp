@@ -4,6 +4,8 @@
 
 #include "../src/IFileParser.hpp"
 
+//struct XXX {};
+
 namespace wc {
 namespace simple {
 

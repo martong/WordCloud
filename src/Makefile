@@ -32,13 +32,13 @@ include $(PROJECT_ROOT)/project_defaults.mk
 # Settings for recursion down from this level.
 #
 DEFAULT_GOAL := all
-SUBDIRS := 
+SUBDIRS := simple
 COMMON_GOALS := all clean real-clean depend nodep
 
 # Settings for the source code on this level.
 #
-SRCS := $(wildcard *.cpp) $(wildcard simple/*.cpp)
-HEADERS := $(wildcard *.hpp) $(wildcard simple/*.hpp)
+SRCS := $(wildcard *.cpp)
+HEADERS := $(wildcard *.hpp)
 OBJS := $(SRCS:%.cpp=%.o)
 LIBS :=
 BINS :=

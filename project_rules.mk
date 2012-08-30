@@ -23,8 +23,10 @@ ifneq ($(strip $(COMMON_GOALS)),)
 recursive_goals := $(patsubst %,recursive-%,$(COMMON_GOALS))
 prereq := $(if $(findstring ' $(goal) ',$(patsubst %,' % ',$(COMMON_GOALS))),recursive-$(goal),)
 
+ifneq ($(strip $(prereq)),)
 .PHONY: $(goal)
 $(goal): $(prereq)
+endif
 
 .PHONY: $(recursive_goals)
 $(recursive_goals):
@@ -34,20 +36,22 @@ endif
 
 endif
 
-no_dep_include := nodep depend clean real-clean local-clean local-real-clean
+no_dep_include := depend clean real-clean local-clean local-real-clean
 .PHONY: depend
 ifeq ($(strip $(DEPFILE)),)
 depend: ;
 else
-depend:
-	@echo  -- updating dependency file: $(DEPFILE)
-	@$(CPP) $(CPPFLAGS) -MM $(SRCS) >$(DEPFILE)
+depend: $(SRCS) $(HEADERS)
+	@echo  --1 updating dependency file: $(DEPFILE)
+	$(CPP) $(CPPFLAGS) -MM $(SRCS) >$(DEPFILE)
 ifeq ($(strip $(PROJECT_AUTODEP)),TRUE)
 ifneq ($(strip $(filter-out $(no_dep_include),$(goal))),)
 .DELETE_ON_ERROR: $(DEPFILE)
+ifneq ($(strip $(goal)),nodep)
 $(DEPFILE): $(SRCS) $(HEADERS)
-	@echo  -- updating dependency file: $(DEPFILE)
-	@$(CPP) $(CPPFLAGS) -MM $(SRCS) >$(DEPFILE)
+	@echo  --2 updating dependency file: $(DEPFILE)
+	$(CPP) $(CPPFLAGS) -MM $(SRCS) >$(DEPFILE)
+endif
 else
 $(DEPFILE): ;
 endif

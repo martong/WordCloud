@@ -7,7 +7,7 @@ BOOST_AUTO_TEST_CASE( Basic )
 {
 	using namespace wc;
 	using namespace wc::simple;
-	CountMap cm;
+	detail::CountMap cm;
 	LineBasedCounter c;
 	std::string test("apple banana");
 	c(test, cm);

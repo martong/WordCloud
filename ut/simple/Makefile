@@ -32,19 +32,17 @@ include $(PROJECT_ROOT)/project_defaults.mk
 # Settings for recursion down from this level.
 #
 DEFAULT_GOAL := all
-SUBDIRS := simple
+SUBDIRS := 
 COMMON_GOALS := all clean real-clean depend nodep
 
 # Settings for the source code on this level.
 #
 SRCS := $(wildcard *.cpp)
-SIMPLE_SRCS := $(wildcard simple/*.cpp)
 HEADERS := $(wildcard *.hpp)
 OBJS := $(SRCS:%.cpp=%.o)
-SIMPLE_OBJS := $(SIMPLE_SRCS:%.cpp=%.o)
 LIBS :=
-BINS := unitTest
-TARGET := dependency $(LIBS) $(BINS)
+BINS := 
+TARGET := $(OBJS)
 DEPFILE := .depend
 INCL_DIRS := $(INCL_DIRS) -I $(PROJECT_ROOT)/src 
 
@@ -79,8 +77,6 @@ local-real-clean: real-clean
 # libraries, executables).
 
 .PHONY: $(BINS)
-dependency:
-	$(MAKE) -C $(PROJECT_ROOT)/lib $(MAKECMDGOALS)
 
 BOOST_LIBS = $(boost_lib_dir)/libboost_thread.a \
 	$(boost_lib_dir)/libboost_system.a \
@@ -90,10 +86,9 @@ BOOST_LIBS = $(boost_lib_dir)/libboost_thread.a \
 #	$(boost_lib_dir)/libboost_program_options.a \
 #	$(boost_lib_dir)/libboost_serialization.a \
 
-unitTest: $(OBJS)
-	$(MAKE) -C simple $(MAKECMDGOALS)
+unitTest: $(OBJS) 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $(LDFLAGS) \
-	-o $@ $^ $(SIMPLE_OBJS) \
+	-o $@ $^ \
 	$(PROJECT_ROOT)/lib/libWordCloud.a \
 	$(BOOST_LIBS) \
 	-lpthread
