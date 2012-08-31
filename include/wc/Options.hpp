@@ -11,7 +11,7 @@ struct Options {
 	std::string path = ".";
 	/**
 	 * Retrieve the first N word from the most frequent words.
-	 * 0 means unlimited.
+	 * Ordered by frequency, decreasing.
 	 */
 	std::size_t firstN = 200;
 	boost::regex regex = boost::regex(".*");

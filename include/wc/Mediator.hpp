@@ -4,7 +4,7 @@
 #include "wc/Options.hpp"
 #include "wc/detail/CountMap.hpp"
 #include "wc/detail/TransformR2L.hpp"
-#include "wc/detail/FilterRegex.hpp"
+#include "wc/detail/RegexFilter.hpp"
 #include <more/range/adaptor/first_nd.hpp>
 #include <boost/range/adaptor/filtered.hpp>
 #include <boost/range/adaptor/transformed.hpp>
