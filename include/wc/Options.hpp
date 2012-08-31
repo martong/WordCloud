@@ -2,6 +2,7 @@
 #define WORDCLOUD_WC_OPTIONS_HPP_
 
 #include <string>
+#include <vector>
 #include <boost/regex.hpp>
 
 namespace wc {
@@ -14,8 +15,10 @@ struct Options {
 	 * Ordered by frequency, decreasing.
 	 */
 	std::size_t firstN = 200;
-	boost::regex regex = boost::regex(".*");
-	bool inverseMatch = false;
+	typedef std::vector<boost::regex> Regexes;
+	//Regexes includeRegexes = { boost::regex{".*"} };
+	Regexes includeRegexes;
+	Regexes excludeRegexes;
 };
 
 } // namespace wc

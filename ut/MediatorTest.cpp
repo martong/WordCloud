@@ -35,7 +35,7 @@ BOOST_FIXTURE_TEST_CASE( GetFirstN, Fixture )
 		BOOST_MESSAGE(e.first << ' ' << e.second.count);
 	}
 
-	std::size_t rangeSize = std::distance(range.begin(), range.end());
+	auto rangeSize = std::distance(range.begin(), range.end());
 	BOOST_CHECK_EQUAL(rangeSize, 3);
 
 	int i = 1;
@@ -64,9 +64,9 @@ BOOST_FIXTURE_TEST_CASE( DefaultRegex, Fixture )
 	BOOST_CHECK_EQUAL(it->second.count, 2);
 }
 
-BOOST_FIXTURE_TEST_CASE( RegexMatch, Fixture )
+BOOST_FIXTURE_TEST_CASE( IncludeRegexMatch, Fixture )
 {
-	op.regex = "ban.*";
+	op.includeRegexes.emplace_back("ban.*");
 	auto range = m.getWordCount();
 	auto it =
 			boost::range::find_if(range,
@@ -79,14 +79,13 @@ BOOST_FIXTURE_TEST_CASE( RegexMatch, Fixture )
 	BOOST_CHECK(it2 != range.end());
 	BOOST_CHECK_EQUAL(it2->second.count, 2);
 
-	std::size_t rangeSize = std::distance(range.begin(), range.end());
+	auto rangeSize = std::distance(range.begin(), range.end());
 	BOOST_CHECK_EQUAL(rangeSize, 1);
 }
 
-BOOST_FIXTURE_TEST_CASE( InverseRegexMatch, Fixture )
+BOOST_FIXTURE_TEST_CASE( ExcludeRegexMatch, Fixture )
 {
-	op.regex = "(ban.*)|(\\w{1})|(.*f.*)";
-	op.inverseMatch = true;
+	op.excludeRegexes.emplace_back("(ban.*)|(\\w{1})|(.*f.*)");
 	auto range = m.getWordCount();
 	auto it =
 			boost::range::find_if(range,
@@ -98,8 +97,87 @@ BOOST_FIXTURE_TEST_CASE( InverseRegexMatch, Fixture )
 					[](const WordCountItem& p){ return p.first == "banana"; });
 	BOOST_CHECK(it2 == range.end());
 
-	std::size_t rangeSize = std::distance(range.begin(), range.end());
+	auto rangeSize = std::distance(range.begin(), range.end());
 	BOOST_CHECK_EQUAL(rangeSize, 1);
+}
+
+BOOST_FIXTURE_TEST_CASE( ExcludeAndIncludeRegexMatch, Fixture )
+{
+	op.excludeRegexes.emplace_back("ban.*");
+	op.includeRegexes.emplace_back("\\w{1}");
+	auto range = m.getWordCount();
+	auto it =
+			boost::range::find_if(range,
+					[](const WordCountItem& p){ return p.first == "apple"; });
+	BOOST_CHECK(it == range.end());
+
+	auto it2 =
+			boost::range::find_if(range,
+					[](const WordCountItem& p){ return p.first == "banana"; });
+	BOOST_CHECK(it2 == range.end());
+
+	auto it3 =
+			boost::range::find_if(range,
+					[](const WordCountItem& p){ return p.first == "f"; });
+	BOOST_CHECK(it3 != range.end());
+
+	auto rangeSize = std::distance(range.begin(), range.end());
+	BOOST_CHECK_EQUAL(rangeSize, 4);
+}
+
+BOOST_FIXTURE_TEST_CASE( MultipleIncludeRegexMatch, Fixture )
+{
+	op.includeRegexes.emplace_back("ban.*");
+	op.includeRegexes.emplace_back("app.*");
+	auto range = m.getWordCount();
+	auto rangeSize = std::distance(range.begin(), range.end());
+	BOOST_CHECK_EQUAL(rangeSize, 2);
+}
+
+BOOST_FIXTURE_TEST_CASE( MultipleExcludeRegexMatch, Fixture )
+{
+	op.excludeRegexes.emplace_back("ban.*");
+	op.excludeRegexes.emplace_back("app.*");
+	op.excludeRegexes.emplace_back("\\w{1}");
+	auto range = m.getWordCount();
+	auto rangeSize = std::distance(range.begin(), range.end());
+	BOOST_CHECK_EQUAL(rangeSize, 2);
+
+	auto it =
+			boost::range::find_if(range,
+					[](const WordCountItem& p){ return p.first == "ff"; });
+	BOOST_CHECK(it != range.end());
+	auto it2 =
+			boost::range::find_if(range,
+					[](const WordCountItem& p){ return p.first == "asdf"; });
+	BOOST_CHECK(it2 != range.end());
+
+}
+
+BOOST_FIXTURE_TEST_CASE( MultipleExcludeAndIncludeRegexMatch, Fixture )
+{
+	{
+		op.includeRegexes.emplace_back("ban.*");
+		op.includeRegexes.emplace_back("app.*");
+		op.excludeRegexes.emplace_back("\\w{2}");
+		op.excludeRegexes.emplace_back("\\w{1}");
+		auto range = m.getWordCount();
+
+		auto rangeSize = std::distance(range.begin(), range.end());
+		BOOST_CHECK_EQUAL(rangeSize, 2);
+	}
+
+	{
+		op.includeRegexes.emplace_back("ban.*");
+		op.includeRegexes.emplace_back("app.*");
+		op.excludeRegexes.emplace_back("app.*");
+		op.excludeRegexes.emplace_back("\\w{2}");
+		op.excludeRegexes.emplace_back("\\w{1}");
+		auto range = m.getWordCount();
+
+		auto rangeSize = std::distance(range.begin(), range.end());
+		BOOST_CHECK_EQUAL(rangeSize, 1);
+	}
 }
 
 BOOST_AUTO_TEST_SUITE_END()
