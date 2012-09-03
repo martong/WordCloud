@@ -8,6 +8,7 @@
 #include <more/range/adaptor/first_nd.hpp>
 #include <boost/range/adaptor/filtered.hpp>
 #include <boost/range/adaptor/transformed.hpp>
+#include <functional>
 
 namespace wc {
 
@@ -20,9 +21,31 @@ auto getWordCountImpl = [](const CountMap& cm, const Options& options)
 
 	auto n = cm.size() > options.firstN ? options.firstN : cm.size();
 
+	struct AccessLeftFirst	{
+		typedef CountMap::left_value_type value_type;
+		typedef const CountMap::left_key_type& result_type;
+		result_type operator()(const value_type& entry) const
+		{
+			return entry.first;
+		}
+	};
+
+	// internal compiler error, todo gcc bug report
+//	struct AccessLeftFirst	{
+//		typedef CountMap::left_value_type value_type;
+//		auto operator()(const value_type& entry) const -> decltype(entry.first)
+//		{
+//			return entry.first;
+//		}
+//	};
+
 	// TODO When OvenToBoost accepted by boost, then replace first_nd to boost::taken(n)
-	return cm.right | first_nd(n) |
-			transformed(TransformR2L<CountMap>(cm)) | filtered(RegexFilter(options));
+	// Also change explicit structs to lambdas, where appropriate.
+	return cm.right |
+			first_nd(n) | // get the first N elements
+			transformed(TransformR2L<CountMap>(cm)) | // transform Right type to Left type
+			filtered(makeRegexFilter(options.wordIncludeRegexes,
+					options.wordExcludeRegexes, AccessLeftFirst()));
 };
 
 } // namespace detail

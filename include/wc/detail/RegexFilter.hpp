@@ -8,27 +8,49 @@
 namespace wc {
 namespace detail {
 
+template <class AccessString, class RegexForwardRange>
 struct RegexFilter {
-	RegexFilter(const Options& options) : options(options) {}
-	bool operator()(const CountMap::left_value_type& p) const {
-		const std::string& word = p.first;
-		for (auto re : options.excludeRegexes) {
+	typedef typename AccessString::value_type ValueType;
+	RegexFilter(const RegexForwardRange& includeRegexes,
+			const RegexForwardRange& excludeRegexes,
+			const AccessString& accessString) :
+				includeRegexes(includeRegexes), excludeRegexes(excludeRegexes),
+				accessString(accessString)
+	{}
+	bool operator()(const ValueType& value) const {
+		return filter(accessString(value));
+	}
+	bool filter(const std::string& word) const {
+		for (const auto& re : excludeRegexes) {
 			if (boost::regex_match(word, re)) {
 				return false;
 			}
 		}
-		if (options.includeRegexes.size() == 0) {
+		if (includeRegexes.size() == 0) {
 			return true;
 		}
-		return std::accumulate(options.includeRegexes.begin(),	options.includeRegexes.end(), false,
+		return std::accumulate(includeRegexes.begin(),	includeRegexes.end(), false,
 				[&word](bool value, const boost::regex& re) {
 					return value || boost::regex_match(word, re);
 				}
 		);
 	}
 private:
-	const Options& options;
+	const RegexForwardRange& includeRegexes;
+	const RegexForwardRange& excludeRegexes;
+	AccessString accessString;
 };
+
+template <class AccessString, class RegexForwardRange>
+RegexFilter<AccessString, RegexForwardRange>
+makeRegexFilter(const RegexForwardRange& includeRegexes,
+			const RegexForwardRange& excludeRegexes,
+			const AccessString& accessString)
+{
+	return RegexFilter<AccessString, RegexForwardRange>(includeRegexes,
+			excludeRegexes, accessString);
+}
+
 
 }  // namespace detail
 }  // namespace wc

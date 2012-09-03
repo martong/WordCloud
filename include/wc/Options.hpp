@@ -16,9 +16,10 @@ struct Options {
 	 */
 	std::size_t firstN = 200;
 	typedef std::vector<boost::regex> Regexes;
-	//Regexes includeRegexes = { boost::regex{".*"} };
-	Regexes includeRegexes;
-	Regexes excludeRegexes;
+	Regexes wordIncludeRegexes;
+	Regexes wordExcludeRegexes;
+	Regexes pathIncludeRegexes = { boost::regex{".*\\.(hpp|h|hh|cpp|c|cc)"} };
+	Regexes pathExcludeRegexes;
 };
 
 } // namespace wc

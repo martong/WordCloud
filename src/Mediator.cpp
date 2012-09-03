@@ -8,10 +8,10 @@ namespace wc {
 void Mediator::operator()()
 {
 	using namespace wc;
-	auto range = makeDirectoryRange(options.path);
-	for (auto file : range) {
+	auto range = makeDirectoryRange(options);
+	for (const auto& fileName : range) {
 		IFileParserPtr fileParser = make_unique<simple::FileParser>();
-		fileParser->parse(file.string(), countMap);
+		fileParser->parse(fileName, countMap);
 	}
 }
 

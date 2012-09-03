@@ -66,7 +66,7 @@ BOOST_FIXTURE_TEST_CASE( DefaultRegex, Fixture )
 
 BOOST_FIXTURE_TEST_CASE( IncludeRegexMatch, Fixture )
 {
-	op.includeRegexes.emplace_back("ban.*");
+	op.wordIncludeRegexes.emplace_back("ban.*");
 	auto range = m.getWordCount();
 	auto it =
 			boost::range::find_if(range,
@@ -85,7 +85,7 @@ BOOST_FIXTURE_TEST_CASE( IncludeRegexMatch, Fixture )
 
 BOOST_FIXTURE_TEST_CASE( ExcludeRegexMatch, Fixture )
 {
-	op.excludeRegexes.emplace_back("(ban.*)|(\\w{1})|(.*f.*)");
+	op.wordExcludeRegexes.emplace_back("(ban.*)|(\\w{1})|(.*f.*)");
 	auto range = m.getWordCount();
 	auto it =
 			boost::range::find_if(range,
@@ -103,8 +103,8 @@ BOOST_FIXTURE_TEST_CASE( ExcludeRegexMatch, Fixture )
 
 BOOST_FIXTURE_TEST_CASE( ExcludeAndIncludeRegexMatch, Fixture )
 {
-	op.excludeRegexes.emplace_back("ban.*");
-	op.includeRegexes.emplace_back("\\w{1}");
+	op.wordExcludeRegexes.emplace_back("ban.*");
+	op.wordIncludeRegexes.emplace_back("\\w{1}");
 	auto range = m.getWordCount();
 	auto it =
 			boost::range::find_if(range,
@@ -127,8 +127,8 @@ BOOST_FIXTURE_TEST_CASE( ExcludeAndIncludeRegexMatch, Fixture )
 
 BOOST_FIXTURE_TEST_CASE( MultipleIncludeRegexMatch, Fixture )
 {
-	op.includeRegexes.emplace_back("ban.*");
-	op.includeRegexes.emplace_back("app.*");
+	op.wordIncludeRegexes.emplace_back("ban.*");
+	op.wordIncludeRegexes.emplace_back("app.*");
 	auto range = m.getWordCount();
 	auto rangeSize = std::distance(range.begin(), range.end());
 	BOOST_CHECK_EQUAL(rangeSize, 2);
@@ -136,9 +136,9 @@ BOOST_FIXTURE_TEST_CASE( MultipleIncludeRegexMatch, Fixture )
 
 BOOST_FIXTURE_TEST_CASE( MultipleExcludeRegexMatch, Fixture )
 {
-	op.excludeRegexes.emplace_back("ban.*");
-	op.excludeRegexes.emplace_back("app.*");
-	op.excludeRegexes.emplace_back("\\w{1}");
+	op.wordExcludeRegexes.emplace_back("ban.*");
+	op.wordExcludeRegexes.emplace_back("app.*");
+	op.wordExcludeRegexes.emplace_back("\\w{1}");
 	auto range = m.getWordCount();
 	auto rangeSize = std::distance(range.begin(), range.end());
 	BOOST_CHECK_EQUAL(rangeSize, 2);
@@ -157,10 +157,10 @@ BOOST_FIXTURE_TEST_CASE( MultipleExcludeRegexMatch, Fixture )
 BOOST_FIXTURE_TEST_CASE( MultipleExcludeAndIncludeRegexMatch, Fixture )
 {
 	{
-		op.includeRegexes.emplace_back("ban.*");
-		op.includeRegexes.emplace_back("app.*");
-		op.excludeRegexes.emplace_back("\\w{2}");
-		op.excludeRegexes.emplace_back("\\w{1}");
+		op.wordIncludeRegexes.emplace_back("ban.*");
+		op.wordIncludeRegexes.emplace_back("app.*");
+		op.wordExcludeRegexes.emplace_back("\\w{2}");
+		op.wordExcludeRegexes.emplace_back("\\w{1}");
 		auto range = m.getWordCount();
 
 		auto rangeSize = std::distance(range.begin(), range.end());
@@ -168,11 +168,11 @@ BOOST_FIXTURE_TEST_CASE( MultipleExcludeAndIncludeRegexMatch, Fixture )
 	}
 
 	{
-		op.includeRegexes.emplace_back("ban.*");
-		op.includeRegexes.emplace_back("app.*");
-		op.excludeRegexes.emplace_back("app.*");
-		op.excludeRegexes.emplace_back("\\w{2}");
-		op.excludeRegexes.emplace_back("\\w{1}");
+		op.wordIncludeRegexes.emplace_back("ban.*");
+		op.wordIncludeRegexes.emplace_back("app.*");
+		op.wordExcludeRegexes.emplace_back("app.*");
+		op.wordExcludeRegexes.emplace_back("\\w{2}");
+		op.wordExcludeRegexes.emplace_back("\\w{1}");
 		auto range = m.getWordCount();
 
 		auto rangeSize = std::distance(range.begin(), range.end());
