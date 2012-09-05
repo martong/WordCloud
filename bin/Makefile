@@ -83,9 +83,9 @@ dependency:
 BOOST_LIBS = $(boost_lib_dir)/libboost_thread.a \
 	$(boost_lib_dir)/libboost_system.a \
 	$(boost_lib_dir)/libboost_filesystem.a \
-	$(boost_lib_dir)/libboost_regex.a
+	$(boost_lib_dir)/libboost_regex.a \
+	$(boost_lib_dir)/libboost_program_options.a
 #	$(gcc_lib_dir)/libstdc++.a
-#	$(boost_lib_dir)/libboost_program_options.a \
 #	$(boost_lib_dir)/libboost_serialization.a \
 
 wordCloud: $(OBJS) 
