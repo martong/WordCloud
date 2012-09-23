@@ -40,7 +40,7 @@ ifeq ($(strip $(PROJECT_AUTODEP)),)
 PROJECT_AUTODEP = TRUE
 endif
 
-oventoboost_dir := $(PROJECT_ROOT)/OvenToBoost
+oventoboost_dir := /home/egbomrt/BOOST/OvenToBoost
 oventoboost_incl_dir := $(oventoboost_dir)/
 oventoboost_incl_statement := -isystem $(oventoboost_incl_dir)
 
@@ -64,7 +64,7 @@ more_incl_dir := $(more_dir)/include
 more_incl_statement := -I $(more_incl_dir)
 
 DEFS =
-INCL_DIRS = $(project_incl_statement) $(boost_incl_statement) $(more_incl_statement) $(oventoboost_incl_statement) 
+INCL_DIRS = $(project_incl_statement) $(boost_incl_statement) #$(more_incl_statement) $(oventoboost_incl_statement) 
 LIB_DIRS = $(project_lib_statement) $(boost_lib_statement) $(gcc_lib_statement)
 
 CPPFLAGS = -std=c++11 -Wall -Wextra -O0 -g $(DEFS) $(INCL_DIRS)

@@ -68,6 +68,10 @@ BOOST_FIXTURE_TEST_CASE( IncludeRegexMatch, Fixture )
 {
 	op.wordIncludeRegexes.emplace_back("ban.*");
 	auto range = m.getWordCount();
+
+	auto rangeSize = std::distance(range.begin(), range.end());
+	BOOST_CHECK_EQUAL(rangeSize, 1);
+
 	auto it =
 			boost::range::find_if(range,
 					[](const WordCountItem& p){ return p.first == "apple"; });
@@ -78,9 +82,6 @@ BOOST_FIXTURE_TEST_CASE( IncludeRegexMatch, Fixture )
 					[](const WordCountItem& p){ return p.first == "banana"; });
 	BOOST_CHECK(it2 != range.end());
 	BOOST_CHECK_EQUAL(it2->second.count, 2);
-
-	auto rangeSize = std::distance(range.begin(), range.end());
-	BOOST_CHECK_EQUAL(rangeSize, 1);
 }
 
 BOOST_FIXTURE_TEST_CASE( ExcludeRegexMatch, Fixture )

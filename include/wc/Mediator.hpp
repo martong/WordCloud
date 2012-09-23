@@ -4,8 +4,8 @@
 #include "wc/Options.hpp"
 #include "wc/detail/CountMap.hpp"
 #include "wc/detail/TransformR2L.hpp"
+#include "wc/detail/FilterFirstNWhile.hpp"
 #include "wc/detail/RegexFilter.hpp"
-#include <more/range/adaptor/first_nd.hpp>
 #include <boost/range/adaptor/filtered.hpp>
 #include <boost/range/adaptor/transformed.hpp>
 #include <functional>
@@ -17,7 +17,6 @@ namespace detail {
 auto getWordCountImpl = [](const CountMap& cm, const Options& options)
 {
 	using namespace boost::adaptors;
-	using namespace more::adaptors;
 
 	auto n = cm.size() > options.firstN ? options.firstN : cm.size();
 
@@ -39,13 +38,16 @@ auto getWordCountImpl = [](const CountMap& cm, const Options& options)
 //		}
 //	};
 
-	// TODO When OvenToBoost accepted by boost, then replace first_nd to boost::taken(n)
-	// Also change explicit structs to lambdas, where appropriate.
 	return cm.right |
-			first_nd(n) | // get the first N elements
-			transformed(TransformR2L<CountMap>(cm)) | // transform Right type to Left type
-			filtered(makeRegexFilter(options.wordIncludeRegexes,
-					options.wordExcludeRegexes, AccessLeftFirst()));
+			transformed(TransformR2L<CountMap>()) | // transform Right type to Left type
+			filtered(
+					makeFilterFirstNWhile(
+							// filter with the regexes
+							makeRegexFilter(options.wordIncludeRegexes,
+									options.wordExcludeRegexes, AccessLeftFirst()),
+							n // get not more than n elements
+					)
+			);
 };
 
 } // namespace detail

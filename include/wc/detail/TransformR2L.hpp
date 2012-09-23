@@ -10,11 +10,9 @@ namespace detail {
 template <class BiMap>
 struct TransformR2L {
 	typedef typename BiMap::left_value_type result_type;
-	TransformR2L(const BiMap& cm) : cm(cm) {}
 	result_type operator()(const typename BiMap::right_value_type& val) const{
 		return result_type(val.second, val.first);
 	}
-	const BiMap& cm;
 };
 
 } // namespace detail

@@ -10,14 +10,14 @@ namespace detail {
 
 template <class AccessString, class RegexForwardRange>
 struct RegexFilter {
-	typedef typename AccessString::value_type ValueType;
+	typedef typename AccessString::value_type value_type;
 	RegexFilter(const RegexForwardRange& includeRegexes,
 			const RegexForwardRange& excludeRegexes,
 			const AccessString& accessString) :
 				includeRegexes(includeRegexes), excludeRegexes(excludeRegexes),
 				accessString(accessString)
 	{}
-	bool operator()(const ValueType& value) const {
+	bool operator()(const value_type& value) const {
 		return filter(accessString(value));
 	}
 	bool filter(const std::string& word) const {
