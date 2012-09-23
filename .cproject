@@ -26,6 +26,7 @@
 								<option id="gnu.cpp.compiler.option.include.paths.1312557809" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="/home/egbomrt/BOOST/inst_1_50_0/include"/>
 									<listOptionValue builtIn="false" value="/home/egbomrt/gcc/4.7.1/include/c++/4.7.1"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/WordCloud/OvenToBoost}&quot;"/>
 								</option>
 								<option id="gnu.cpp.compiler.option.preprocessor.def.315711686" name="Defined symbols (-D)" superClass="gnu.cpp.compiler.option.preprocessor.def" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="__GXX_EXPERIMENTAL_CXX0X__=1"/>
@@ -35,6 +36,7 @@
 							<tool id="cdt.managedbuild.tool.gnu.c.compiler.base.2036988425" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.base">
 								<option id="gnu.c.compiler.option.include.paths.94695829" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="/home/egbomrt/gcc/4.7.1/include/c++/4.7.1"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/WordCloud/OvenToBoost}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.949415459" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
@@ -48,6 +50,7 @@
 							<tool id="cdt.managedbuild.tool.gnu.assembler.base.1950948141" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.base">
 								<option id="gnu.both.asm.option.include.paths.457841713" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="/home/egbomrt/gcc/4.7.1/include/c++/4.7.1"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/WordCloud/OvenToBoost}&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.885381452" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>

@@ -7,11 +7,16 @@
 
 # Elements of the compiler toolchain.
 #
-gcc_dir := /home/egbomrt/gcc/4.7.1/bin
-CC := $(gcc_dir)/gcc
-CPP := $(gcc_dir)/gcc -E
-CXX := $(gcc_dir)/g++
-LD = $(CXX)
+clang_dir := /home/egbomrt/llvm_build/Release+Asserts/bin
+CC := $(clang_dir)/clang
+CPP := $(clang_dir)/clang -E
+CXX := $(clang_dir)/clang++
+
+#gcc_dir := /home/egbomrt/gcc/4.7.1/bin
+#CC := $(gcc_dir)/gcc
+#CPP := $(gcc_dir)/gcc -E
+#CXX := $(gcc_dir)/g++
+#LD = $(CXX)
 AR := ar
 
 # Overrides from CUDB.
@@ -35,9 +40,11 @@ ifeq ($(strip $(PROJECT_AUTODEP)),)
 PROJECT_AUTODEP = TRUE
 endif
 
-# Parameters for the compiler toolchain.
-#
-boost_dir := /home/egbomrt/BOOST/inst_1_50_0
+oventoboost_dir := $(PROJECT_ROOT)/OvenToBoost
+oventoboost_incl_dir := $(oventoboost_dir)/
+oventoboost_incl_statement := -isystem $(oventoboost_incl_dir)
+
+boost_dir := /home/egbomrt/BOOST/inst_1_51_0
 boost_incl_dir := $(boost_dir)/include
 boost_incl_statement := -isystem $(boost_incl_dir)
 boost_lib_dir := $(boost_dir)/lib
@@ -57,7 +64,7 @@ more_incl_dir := $(more_dir)/include
 more_incl_statement := -I $(more_incl_dir)
 
 DEFS =
-INCL_DIRS = $(project_incl_statement) $(boost_incl_statement) $(more_incl_statement) 
+INCL_DIRS = $(project_incl_statement) $(boost_incl_statement) $(more_incl_statement) $(oventoboost_incl_statement) 
 LIB_DIRS = $(project_lib_statement) $(boost_lib_statement) $(gcc_lib_statement)
 
 CPPFLAGS = -std=c++11 -Wall -Wextra -O0 -g $(DEFS) $(INCL_DIRS)
