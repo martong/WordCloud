@@ -7,7 +7,7 @@
 
 # Elements of the compiler toolchain.
 #
-clang_dir := /home/egbomrt/llvm_build/Release+Asserts/bin
+clang_dir := /proj/cudbdm/tools/external/clang-3.4/SLED11/bin/
 CC := $(clang_dir)/clang
 CPP := $(clang_dir)/clang -E
 CXX := $(clang_dir)/clang++
